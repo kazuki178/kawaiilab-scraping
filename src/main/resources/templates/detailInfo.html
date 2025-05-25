@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/css/kawaiilab.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Anta&family=BIZ+UDPGothic&family=Gupter:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+		rel="stylesheet">
+</head>
+
+<body>
+
+
+
+	<div class="schedule">
+
+		<table border="1">
+			<h1 th:text="${title}" class="top-contents"></h1>
+
+			<!--ここでidを保持して再度detailifonにアクセスする-->
+			<a th:href="@{/detailInfo(id=${id},status=prevMonth,date=${date})}" th:text="先月"></a>
+			<a th:href="@{/detailInfo(id=${id},status=nextMonth,date=${date})}" th:text="来月"></a>
+			<tr>
+				<th>
+					<p>日付</p>
+				</th>
+				<th>
+					<p>スケジュール</p>
+				</th>
+				<th>
+					<p>カテゴリ</p>
+				</th>
+
+			</tr>
+			<tr th:each="Schedule:${ScheduleList}">
+				<td th:text="|${Schedule.month}月${Schedule.day}日|"></td>
+				<td th:text="${Schedule.title}"></td>
+				<td th:text="${Schedule.category}"></td>
+			</tr>
+
+
+		</table>
+	</div>
+
+
+
+
+
+	<a th:href="@{/pia/info/{group}(group=${group})}">ticket情報を取得する</a>
+
+	<a href="/index">ホームに戻る</a>
+</body>
+
+</html>

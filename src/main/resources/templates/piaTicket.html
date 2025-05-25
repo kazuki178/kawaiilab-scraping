@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<h1>チケット情報取得</h1>
+
+	<th:block th:if="${acceptinsListFlag}">
+		<div class="onevent">
+			<h2>抽選受付中チケット一覧</h2>
+			<table border="1">
+				<h2>抽選受付中</h2>
+				<tr>
+					<th>開催日</th>
+					<th>タイトル</th>
+					<th>開催地</th>
+				</tr>
+
+				<tr th:each="acccept:${acceptinsList}">
+					<td th:text="${acccept.date}"></td>
+					<td th:text="${acccept.title}"></td>
+					<td th:text="${acccept.place}"></td>
+				</tr>
+			</table>
+		</div>
+	</th:block>
+
+	<th:block th:if="!${acceptinsListFlag}">
+		<div class="offevent">
+			<h2>抽選受付中チケット一覧</h2>
+			<p>現在、抽選受付中のチケットはありません</p>
+		</div>
+	</th:block>
+
+
+
+	<th:block th:if="${beforeResultsListFlag}">
+		<div class="onevent">
+			<h2>抽選結果発表前チケット一覧</h2>
+			<table border="1">
+				<h2>抽選結果発表前</h2>
+				<tr>
+					<th>開催日</th>
+					<th>タイトル</th>
+					<th>開催地</th>
+				</tr>
+
+				<tr th:each="before:${beforeResults}">
+					<td th:text="${before.date}"></td>
+					<td th:text="${before.title}"></td>
+					<td th:text="${before.place}"></td>
+				</tr>
+			</table>
+		</div>
+	</th:block>
+
+	<th:block th:if="!${beforeResultsListFlag}">
+		<div class="offevent">
+			<h2>抽選結果発表前チケット一覧</h2>
+			<p>現在、抽選結果発表前のチケットはありません</p>
+		</div>
+	</th:block>
+
+
+	<a href="/index">戻る</a>
+</body>
+
+</html>
