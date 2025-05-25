@@ -34,7 +34,7 @@ public class IndexController {
 		// List<String> fruitzipperScheduleList =
 		// fruitszipperService.showScheduleInfo();
 		// model.addAttribute("kawailabScheduleList", kawailabScheduleList);
-		// model.addAttribute("fruitzipperScheduleList", fruitzipperScheduleList);
+		// model.addAttribute("fruitzipperScheduleList", fruitzipperScheduleList);  
 
 		return "index";
 	}
@@ -49,7 +49,7 @@ public class IndexController {
 
 		List<GroupSchedule> ScheduleList = new ArrayList<>();
 
-		// 1日で作成dされるように処理
+		// 1日開始で作成dされるように処理
 		String title = null;
 		String group = null;
 		if (date == null) {
@@ -99,5 +99,6 @@ public class IndexController {
 		model.addAttribute("date", date);
 		return "detailInfo";
 	}
+
 
 }
