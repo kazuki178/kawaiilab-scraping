@@ -35,7 +35,6 @@ public class IndexController {
 		// fruitszipperService.showScheduleInfo();
 		// model.addAttribute("kawailabScheduleList", kawailabScheduleList);
 		// model.addAttribute("fruitzipperScheduleList", fruitzipperScheduleList);  
-
 		return "index";
 	}
 
