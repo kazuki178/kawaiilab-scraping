@@ -14,45 +14,46 @@
 
 <body>
 
+	<main>
+
+		<div class="schedule">
+
+			<table border="1">
+				<h1 th:text="${title}" class="top-contents"></h1>
+
+				<!--ここでidを保持して再度detailifonにアクセスする-->
+				<a th:href="@{/detailInfo(id=${id},monthStatus=prevMonth,date=${date})}" th:text="先月"></a>
+				<a th:href="@{/detailInfo(id=${id},monthStatus=nextMonth,date=${date})}" th:text="来月"></a>
+				<tr>
+					<th>
+						<p>日付</p>
+					</th>
+					<th>
+						<p>スケジュール</p>
+					</th>
+					<th>
+						<p>カテゴリ</p>
+					</th>
+
+				</tr>
+				<tr th:each="Schedule:${ScheduleList}">
+					<td th:text="|${Schedule.month}月${Schedule.day}日|"></td>
+					<td th:text="${Schedule.title}"></td>
+					<td th:text="${Schedule.category}"></td>
+				</tr>
 
 
-	<div class="schedule">
-
-		<table border="1">
-			<h1 th:text="${title}" class="top-contents"></h1>
-
-			<!--ここでidを保持して再度detailifonにアクセスする-->
-			<a th:href="@{/detailInfo(id=${id},monthStatus=prevMonth,date=${date})}" th:text="先月"></a>
-			<a th:href="@{/detailInfo(id=${id},monthStatus=nextMonth,date=${date})}" th:text="来月"></a>
-			<tr>
-				<th>
-					<p>日付</p>
-				</th>
-				<th>
-					<p>スケジュール</p>
-				</th>
-				<th>
-					<p>カテゴリ</p>
-				</th>
-
-			</tr>
-			<tr th:each="Schedule:${ScheduleList}">
-				<td th:text="|${Schedule.month}月${Schedule.day}日|"></td>
-				<td th:text="${Schedule.title}"></td>
-				<td th:text="${Schedule.category}"></td>
-			</tr>
-
-
-		</table>
-	</div>
+			</table>
+		</div>
 
 
 
 
 
-	<a th:href="@{/pia/info/{group}(group=${group})}">ticket情報を取得する</a>
+		<a th:href="@{/pia/info/{group}(group=${group})}">ticket情報を取得する</a>
 
-	<a href="/index">ホームに戻る</a>
+		<a href="/index">ホームに戻る</a>
+	</main>
 </body>
 
 </html>

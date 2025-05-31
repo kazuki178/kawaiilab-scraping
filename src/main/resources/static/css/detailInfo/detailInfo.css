@@ -1,3 +1,14 @@
+body {
+  background-image: url(/img/index/kawaiilab.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .top-contents {
   display: flex;
   justify-content: center;
@@ -49,7 +60,7 @@
 }
 
 body {
-  background-image: url("/img/index/kawaiilab.png");
+  background-image: url(/img/index/kawaiilab.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -57,4 +68,11 @@ body {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }/*# sourceMappingURL=detailInfo.css.map */
