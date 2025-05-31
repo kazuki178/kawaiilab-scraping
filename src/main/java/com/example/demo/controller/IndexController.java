@@ -11,53 +11,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.GroupSchedule;
-import com.example.demo.service.CandyTurnService;
-import com.example.demo.service.CutieStreetService;
-import com.example.demo.service.FruitszipperService;
-import com.example.demo.service.KawaiiLabService;
+import com.example.demo.service.GroupScheduleService;
+
 
 @Controller
 public class IndexController {
 	@Autowired
-	KawaiiLabService kawaiiLabService;
-	@Autowired
-	FruitszipperService fruitszipperService;
-	@Autowired
-	CutieStreetService cutieStreetService;
-	@Autowired
-	CandyTurnService candyTurnService;
+	GroupScheduleService groupScheduleService;
 
 	@GetMapping("/index")
 	public String index(Model model) {
-
-		// List<String> kawailabScheduleList = kawaiiLabService.showScheduleInfo();
-		// List<String> fruitzipperScheduleList =
-		// fruitszipperService.showScheduleInfo();
-		// model.addAttribute("kawailabScheduleList", kawailabScheduleList);
-		// model.addAttribute("fruitzipperScheduleList", fruitzipperScheduleList);  
 		return "index";
 	}
 
 	// ここで先月来月を判定して、date変数をそれに応じて変更して、
 	// そこからyearとmonthを取り出して、modelに格納して変化させていく
 	@GetMapping("/detailInfo")
-	public String detailInfo(@RequestParam("id") int id,
-			@RequestParam(name = "status", defaultValue = "") String status,
+	public String detailInfo(@RequestParam("groupId") int id,
+			@RequestParam(name = "monthStatus", defaultValue = "") String monthStatus,
 			@RequestParam(name = "date", required = false) LocalDate date,
 			Model model) {
 
 		List<GroupSchedule> ScheduleList = new ArrayList<>();
 
-		// 1日開始で作成dされるように処理
+		// 1日開始で作成されるように処理
 		String title = null;
 		String group = null;
 		if (date == null) {
 			date = LocalDate.now().withDayOfMonth(1);
 		}
 
-		if (status.equals("nextMonth")) {
+		if (monthStatus.equals("nextMonth")) {
 			date = date.plusMonths(1);
-		} else if (status.equals("prevMonth")) {
+		} else if (monthStatus.equals("prevMonth")) {
 			date = date.minusMonths(1);
 		}
 		// 年（4桁）と月（2桁）を文字列で取得
@@ -66,25 +52,30 @@ public class IndexController {
 
 		switch (id) {
 			case 1: {
-				ScheduleList = kawaiiLabService.showScheduleInfo(year, month);
+				String url = "https://kawaiilab.asobisystem.com/live_information/schedule/list/";
+				ScheduleList = groupScheduleService.showScheduleInfo(url, year, month);
 				title = "KAWAII LAB.";
 				group = "kawaiiLab";
 				break;
 			}
 			case 2: {
-				ScheduleList = fruitszipperService.showScheduleInfo();
+				String url = "https://fruitszipper.asobisystem.com/live_information/schedule/list/";
+				ScheduleList = groupScheduleService.showScheduleInfo(url, year, month);
+
 				title = "FRUITS ZIPPER";
 				group = "fruitsZipper";
 				break;
 			}
 			case 3: {
-				ScheduleList = cutieStreetService.showScheduleInfo();
+				String url = "https://cutiestreet.asobisystem.com/live_information/schedule/list/";
+				ScheduleList = groupScheduleService.showScheduleInfo(url, year, month);
 				title = "CUTIE STREET";
 				group = "cutieStreet";
 				break;
 			}
 			case 4: {
-				ScheduleList = candyTurnService.showScheduleInfo();
+				String url = "https://candytune.asobisystem.com/live_information/schedule/list/";
+				ScheduleList = groupScheduleService.showScheduleInfo(url, year, month);
 				title = "CANDY TUNE";
 				group = "candyTune";
 				break;
@@ -98,6 +89,5 @@ public class IndexController {
 		model.addAttribute("date", date);
 		return "detailInfo";
 	}
-
 
 }

@@ -1,0 +1,6 @@
+@use '../index/index' as index;
+@use '../common/common' as common;
+
+body{
+    @include index.body;
+}

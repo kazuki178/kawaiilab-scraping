@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" th:href="@{/css/kawaiilab.css}" />
+	<link rel="stylesheet" th:href="@{/css/detailInfo/detailInfo.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -22,8 +22,8 @@
 			<h1 th:text="${title}" class="top-contents"></h1>
 
 			<!--ここでidを保持して再度detailifonにアクセスする-->
-			<a th:href="@{/detailInfo(id=${id},status=prevMonth,date=${date})}" th:text="先月"></a>
-			<a th:href="@{/detailInfo(id=${id},status=nextMonth,date=${date})}" th:text="来月"></a>
+			<a th:href="@{/detailInfo(id=${id},monthStatus=prevMonth,date=${date})}" th:text="先月"></a>
+			<a th:href="@{/detailInfo(id=${id},monthStatus=nextMonth,date=${date})}" th:text="来月"></a>
 			<tr>
 				<th>
 					<p>日付</p>
